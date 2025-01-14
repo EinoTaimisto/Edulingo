@@ -7,13 +7,16 @@ body {
 
 .menu {
   text-align: center;
+  font-family: Verdana, sans-serif;
+  color: #000000;
 }
 
 .menu a {
   padding: 8px;
   margin-top: 7px;
   width: 100%;
-  color: white;
+  font-family: Verdana, sans-serif;
+  color: #000000;
   text-decoration: none;
 }
 
