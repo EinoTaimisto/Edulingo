@@ -28,7 +28,7 @@
     <div class="container inquiry-container">
         <h1 class="text-center mb-4">Mikä tämä on?</h1>
         <div class="text-center">
-            <img src="" class="img-fluid mb-4" id="mysteryImage" alt="Mystery">
+            <img src="" class="img-fluid mb-4" id="mysteryImage">
         </div>
         <form id="inquiryForm">
             <div class="mb-3">
@@ -36,7 +36,7 @@
                 <input type="text" class="form-control" id="userAnswer" placeholder="Kirjoita vastauksesi tähän">
             </div>
             <div class="mb-3 text-center">
-                <button type="submit" class="btn btn-primary">Lähetä</button>
+                <button type="submit" class="btn btn-primary" style ="background-color:#AC9E6E;">Lähetä</button>
             </div>
         </form>
         <div class="alert alert-success result-message" id="correctMessage">
@@ -46,79 +46,11 @@
             Valitettavasti väärin. Yritä uudelleen!
         </div>
         <div class="text-center">
-            <button id="continueButton" class="btn btn-secondary">Jatka</button>
+            <button id="continueButton" class="btn btn-secondary" style ="background-color:#AC9E6E;">Jatka</button>
         </div>
     </div>
-
-    <script>
-        const questions = [
-            {
-                image: "https://imgs.search.brave.com/W8wEry5fWuHylOI5roARQdhIqI_YtRcWUwQ8ARo5vxg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YXB0ZWVra2l0dW90/dGVldC5maS9XZWJS/b290L0V1cmFuL1No/b3BzL0V1cmEvNjZC/NC8wNzZCLzA1MUUv/N0ZCRC85NEZCLzdG/MDAvMDAwMS85Qzg3/L3J1aXNrdTIwbWxf/aC5wbmc",
-                answer: "ruisku",
-                explanation: "Tämä on <strong>ruisku</strong>. Sitä käytetään nesteiden pistämiseen tai vetämiseen."
-            },
-            {
-                image: "https://imgs.search.brave.com/XZQg9P7aKbM7MqcThHjPfLQY_M8UE2ch-BcLCoNZ54k/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YXB0ZWVra2l0dW90/dGVldC5maS9zY2Fs/cGVsLUV1cmEvNjZC/NC8wNzZCLzAxMUUv/N0ZCRC85NEZCLzdG/NTEvMDAwMS8zMDQ2/L3NjYWxlcGFya2tp/dGUucG5n",
-                answer: "vaaka",
-                explanation: "Tämä on <strong>vaaka</strong>. Sitä käytetään painon mittaamiseen."
-            },
-            {
-                image: "https://imgs.search.brave.com/YKk-JphDZANu-P9MzV3RfTpNjbKNl36Tn_qhx8yn5aQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c3lnbXAuY29tL1Bh/cGVyQ2xpcHMvRU1P/L2Vtb190aGVybW9t/ZXRlcjEucG5n",
-                answer: "lämpömittari",
-                explanation: "Tämä on <strong>lämpömittari</strong>. Sitä käytetään lämpötilan mittaamiseen."
-            }
-        ];
-
-        let currentQuestionIndex = 0;
-
-        const mysteryImage = document.getElementById('mysteryImage');
-        const userAnswerInput = document.getElementById('userAnswer');
-        const correctMessage = document.getElementById('correctMessage');
-        const wrongMessage = document.getElementById('wrongMessage');
-        const inquiryForm = document.getElementById('inquiryForm');
-        const continueButton = document.getElementById('continueButton');
-
-        // Initialize first question
-        function loadQuestion() {
-            const currentQuestion = questions[currentQuestionIndex];
-            mysteryImage.src = currentQuestion.image;
-            userAnswerInput.value = "";
-            correctMessage.style.display = "none";
-            wrongMessage.style.display = "none";
-            continueButton.style.display = "none";
-        }
-
-        inquiryForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const userAnswer = userAnswerInput.value.trim().toLowerCase();
-            const currentQuestion = questions[currentQuestionIndex];
-
-            correctMessage.style.display = "none";
-            wrongMessage.style.display = "none";
-
-            if (userAnswer === currentQuestion.answer) {
-                correctMessage.innerHTML = `Oikein! ${currentQuestion.explanation}`;
-                correctMessage.style.display = "block";
-                continueButton.style.display = "block"; // Show the "Continue" button
-            } else {
-                wrongMessage.style.display = "block";
-            }
-        });
-
-        continueButton.addEventListener('click', function() {
-            currentQuestionIndex++;
-            if (currentQuestionIndex < questions.length) {
-                loadQuestion();
-            } else {
-                correctMessage.innerHTML = "Oikein! Olet vastannut kaikkiin kysymyksiin!";
-                correctMessage.style.display = "block";
-                continueButton.style.display = "none"; // Hide "Continue" button after last question
-            }
-        });
-
-        // Load the first question on page load
-        loadQuestion();
-    </script>
+    <script type="text/javascript" src="getQS.js"></script>
+    </body>
+    
 </body>
 </html>
