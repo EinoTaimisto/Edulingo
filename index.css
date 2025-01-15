@@ -1,44 +1,41 @@
-
-* {
-  box-sizing: border-box;
+body {
+  font-family: Verdana, sans-serif;
+  color: #000000;
+  margin: 0;
+  padding: 0;
 }
 
 .menu {
-  float: left;
-  width: 20%;
   text-align: center;
+  font-family: Verdana, sans-serif;
+  color: #000000;
 }
 
 .menu a {
-  background-color: #e5e5e5;
   padding: 8px;
   margin-top: 7px;
-  display: block;
   width: 100%;
-  color: black;
+  font-family: Verdana, sans-serif;
+  color: #000000;
+  text-decoration: none;
 }
 
 .main {
-  float: left;
-  width: 60%;
-  padding: 0 20px;
+  padding: 20px;
 }
 
-.right {
-  background-color: #e5e5e5;
-  float: left;
-  width: 20%;
-  padding: 15px;
-  margin-top: 7px;
-  text-align: center;
+footer {
+  background-color: #f8f9fa;
+  padding: 10px 0;
+  color: #6c757d;
 }
 
 @media only screen and (max-width: 620px) {
-  /* For mobile phones: */
-  .menu, .main, .right {
-    width: 100%;
+  .menu a {
+      margin: 5px 0;
   }
 }
+
 
 
 
