@@ -24,10 +24,22 @@
         }
         #homeButton {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 50%;
+            right: 50%;
+            transform: translate(50%, 50%);
+            background-color: #AC9E6E;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.25rem;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        #homeButton:hover {
+            background-color: #967D55; /* Darker shade on hover */
         }
     </style>
+    
 </head>
 <body>
     <div class="container inquiry-container">
@@ -55,8 +67,15 @@
         </div>
     </div>
 
-    <!-- Add the 'etusivulle' button -->
-    <a class="btn btn-primary" style ="background-color:#AC9E6E;"href="http://localhost/Edulingo/index.html" role="button">Etusivulle</a>
+    <!-- Button to go to 'Etusivulle' -->
+    <a 
+        id="homeButton" 
+        href="http://localhost/Edulingo/index.html" 
+        role="button">
+        Etusivulle
+    </a>
+
+
 
     <script>
         const questions = [
