@@ -22,6 +22,11 @@
             display: none;
             margin-top: 20px;
         }
+        #homeButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
     </style>
 </head>
 <body>
@@ -50,6 +55,9 @@
         </div>
     </div>
 
+    <!-- Add the 'etusivulle' button -->
+    <a class="btn btn-primary" style ="background-color:#AC9E6E;"href="http://localhost/Edulingo/index.html" role="button">Etusivulle</a>
+
     <script>
         const questions = [
             {
@@ -77,6 +85,7 @@
         const wrongMessage = document.getElementById('wrongMessage');
         const inquiryForm = document.getElementById('inquiryForm');
         const continueButton = document.getElementById('continueButton');
+        const homeButton = document.getElementById('homeButton');
 
         // Initialize first question
         function loadQuestion() {
@@ -115,6 +124,11 @@
                 correctMessage.style.display = "block";
                 continueButton.style.display = "none"; // Hide "Continue" button after last question
             }
+        });
+
+        // Redirect to home when the "etusivulle" button is clicked
+        homeButton.addEventListener('click', function() {
+            window.location.href = '/'; // Replace '/' with the actual home page URL if needed
         });
 
         // Load the first question on page load
