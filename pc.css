@@ -1,0 +1,15 @@
+body {
+    padding: 20px;
+}
+.inquiry-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.result-message {
+    display: none;
+    margin-top: 20px;
+}
+#continueButton {
+    display: none;
+    margin-top: 20px;
+}
