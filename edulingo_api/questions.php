@@ -3,7 +3,7 @@ header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
 
 $servername = "localhost";
-$username = "root"; 
+$username = "root";
 $password = "";
 $dbname = "edulingo_db";
 
@@ -13,7 +13,7 @@ if ($conn->connect_error) {
     die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));
 }
 
-$sql = "SELECT image, answer, explanation FROM questions";
+$sql = "SELECT image, nimi, explanation, answer FROM questions"; // Include the answer field
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

@@ -13,3 +13,26 @@ body {
     display: none;
     margin-top: 20px;
 }
+
+
+
+.menu {
+    text-align: center;
+    font-family: Verdana, sans-serif;
+    color: #000000;
+  }
+  
+  .menu a {
+    padding: 8px;
+    margin-top: 7px;
+    width: 100%;
+    font-family: Verdana, sans-serif;
+    color: #000000;
+    text-decoration: none;
+  }
+  
+  .main {
+    text-align: center;
+    padding: 5px;    
+    flex: 1;
+  }

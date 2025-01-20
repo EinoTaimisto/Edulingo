@@ -36,15 +36,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     inquiryForm.addEventListener('submit', function (event) {
+        console.log(currentQuestion);
         event.preventDefault();
-
         const userAnswer = userAnswerInput.value.trim().toLowerCase();
+        const correctAnswer = currentQuestion.answer.trim().toLowerCase();
         const currentQuestion = questions[currentQuestionIndex];
 
         correctMessage.style.display = "none";
         wrongMessage.style.display = "none";
 
-        if (userAnswer === currentQuestion.answer) {
+        if (userAnswer === correctAnswer) {
             correctMessage.innerHTML = `Oikein! ${currentQuestion.explanation}`;
             correctMessage.style.display = "block";
             continueButton.style.display = "block";
@@ -66,3 +67,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadQuestions();
 });
+
