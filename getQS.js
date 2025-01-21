@@ -1,9 +1,10 @@
 //Varmistetaan, että js scripti pyörii vasta koko sivun latauduttua
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("hei maailma")
     let questions = [];
     let currentQuestionIndex = 0;
 
-    const mysteryImage = document.getElementById('mysteryImage');
+    const Image = document.getElementById('image');
     const userAnswerInput = document.getElementById('userAnswer');
     const correctMessage = document.getElementById('correctMessage');
     const wrongMessage = document.getElementById('wrongMessage');
@@ -12,15 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Apin kautta hakee kysymykset
     async function loadQuestions() {
+        console.log("lataa")
         try {
             const response = await fetch('http://localhost/Edulingo/edulingo_api/questions.php');
             questions = await response.json();
             if (questions.length > 0) {
                 loadQuestion();
+                console.log("ladattu")
             } else {
                 alert('No questions available.');
             }
         } catch (error) {
+            console.log(error)
             console.error('Error fetching questions:', error);
             alert('Failed to load questions. Please try again later.');
         }
@@ -28,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadQuestion() {
         const currentQuestion = questions[currentQuestionIndex];
-        mysteryImage.src = currentQuestion.image;
+        Image.src = currentQuestion.image;
         userAnswerInput.value = "";
         correctMessage.style.display = "none";
         wrongMessage.style.display = "none";
@@ -36,15 +40,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     inquiryForm.addEventListener('submit', function (event) {
-        console.log(currentQuestion);
         event.preventDefault();
+        
+        const currentQuestion = questions[currentQuestionIndex]; 
         const userAnswer = userAnswerInput.value.trim().toLowerCase();
         const correctAnswer = currentQuestion.answer.trim().toLowerCase();
-        const currentQuestion = questions[currentQuestionIndex];
 
         correctMessage.style.display = "none";
         wrongMessage.style.display = "none";
-
+    
         if (userAnswer === correctAnswer) {
             correctMessage.innerHTML = `Oikein! ${currentQuestion.explanation}`;
             correctMessage.style.display = "block";
@@ -53,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             wrongMessage.style.display = "block";
         }
     });
+    
 
     continueButton.addEventListener('click', function () {
         currentQuestionIndex++;

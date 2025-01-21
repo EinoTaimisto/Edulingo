@@ -13,7 +13,7 @@ if ($conn->connect_error) {
     die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));
 }
 
-$sql = "SELECT image, nimi, explanation, answer FROM questions"; // Include the answer field
+$sql = "SELECT image, nimi, explanation, answer FROM questions";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
