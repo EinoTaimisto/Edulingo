@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             continueButton.style.display = "block";
         } else {
             wrongMessage.style.display = "block";
+            userAnswerInput.value = "";
         }
     });
     
