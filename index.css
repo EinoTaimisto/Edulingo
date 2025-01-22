@@ -116,3 +116,47 @@ footer {
 .project-container a:hover {
   color: #1abc9c;
 }
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Allow items to wrap onto new rows */
+  gap: 20px; /* Maintain spacing between rows and columns */
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap; /* Enable wrapping to new rows */
+  gap: 20px; /* Space between project containers */
+  justify-content: center;
+  max-width: 1000px; /* Optional: control overall width */
+}
+
+.project-container {
+  flex: 1 1 calc(25% - 20px); /* Make each container 1/3 of the row, minus the gap */
+  max-width: calc(33.33% - 20px); /* Prevent stretching beyond 1/3 */
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+.project-container:hover {
+  transform: scale(1.05);
+}
+
+.project-container p {
+  margin: 10px 0;
+}
+
+@media only screen and (max-width: 620px) {
+  .project-container {
+    flex: 1 1 100%; /* Make project containers full width on smaller screens */
+    max-width: 100%;
+  }
+}
+
