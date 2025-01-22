@@ -1,6 +1,5 @@
-//Varmistetaan, että js scripti pyörii vasta koko sivun latauduttua
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("hei maailma")
+    console.log("hei maailma");
     let questions = [];
     let currentQuestionIndex = 0;
 
@@ -11,20 +10,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const inquiryForm = document.getElementById('inquiryForm');
     const continueButton = document.getElementById('continueButton');
 
-    // Apin kautta hakee kysymykset
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const tableName = urlParams.get('table');
+    if (!tableName) {
+        alert("Table name is missing in the URL.");
+        return;
+    }
+
     async function loadQuestions() {
-        console.log("lataa")
+        console.log("lataa");
         try {
-            const response = await fetch('http://localhost/Edulingo/edulingo_api/questions.php');
+            const response = await fetch(`http://localhost/Edulingo/edulingo_api/questions.php?table=${tableName}`);
             questions = await response.json();
             if (questions.length > 0) {
                 loadQuestion();
-                console.log("ladattu")
+                console.log("ladattu");
             } else {
                 alert('No questions available.');
             }
         } catch (error) {
-            console.log(error)
+            console.log(error);
             console.error('Error fetching questions:', error);
             alert('Failed to load questions. Please try again later.');
         }
@@ -58,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
             userAnswerInput.value = "";
         }
     });
-    
 
     continueButton.addEventListener('click', function () {
         currentQuestionIndex++;
@@ -73,4 +78,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadQuestions();
 });
-
