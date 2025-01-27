@@ -1,3 +1,36 @@
+header {
+  width: 100%;
+  background-color: #AC9E6E;
+  padding: 20px 0;
+  text-align: center;
+}
+
+header img {
+  max-width: 500px;
+  height: auto;
+}
+
+header nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+header nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+header nav ul li a:hover {
+  text-decoration: underline;
+}
+
 body {
     padding: 20px;
 }
@@ -13,8 +46,6 @@ body {
     display: none;
     margin-top: 20px;
 }
-
-
 
 html, body {
   font-family: Verdana, sans-serif;
