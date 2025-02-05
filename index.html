@@ -5,6 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <title>Edulingo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+        }
+        #dictionary-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #1c78da00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #dictionary-container {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            overflow-y: auto;
+            transition: right 0.3s ease-in-out;
+            display: none;
+        }
+        #dictionary-container.show {
+            right: 0;
+            display: block;
+        }
+        #close-button {
+            position: absolute; 
+            top: 10px;
+            right: 10px;
+            background: #AC9E6E;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 50%;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+        li {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
 </head>
 <body>
     <header style="background-color:#AC9E6E; display: flex; align-items: center; padding: 10px;">
@@ -27,28 +84,66 @@
                         <p>Monivalintapeli</p>
                 </div>
                 </a>
-                <a href="" class="project-container" style="display: block;">
+                <a href="dd.html" class="project-container" style="display: block;">
                     <div>
-                        <p>Kolmas Fetuuri</p>
+                        <p>Scramble Testi</p>
                     </div>
                 </a>
                 <a href="" class="project-container" style="display: block;">
                     <div>
-                        <p>neljäs Fetuuri</p>
+                        <p>Toistaiseksi Tyhjä</p>
                     </div>
                 </a>
                 <a href="" class="project-container" style="display: block;">
                     <div>
-                        <p>viides Fetuuri</p>
+                        <p>Toistaiseksi Tyhjä</p>
                     </div>
                 </a>
                 <a href="" class="project-container" style="display: block;">
                     <div>
-                        <p>kuudess Fetuuri</p>
+                        <p>Toistaiseksi Tyhjä</p>
                     </div>
                 </a>
             </div>
         </div>
     </div>
+    <button id="dictionary-button">Avaa Sanakirja</button>
+    <div id="dictionary-container">
+        <button id="close-button">&times;</button>
+        <h1>Sanakirja</h1>
+        <ul id="word-list"></ul>
+    </div>
+
+    <script>
+        async function fetchWords() {
+            try {
+                const response = await fetch('http://localhost/Edulingo/edulingo_api/get_words.php');
+                const words = await response.json();
+                displayWords(words);
+            } catch (error) {
+                console.error('Error fetching words:', error);
+            }
+        }
+
+        function displayWords(words) {
+            const wordList = document.getElementById("word-list");
+            wordList.innerHTML = "";
+            words.sort().forEach(word => {
+                const li = document.createElement("li");
+                li.textContent = word;
+                wordList.appendChild(li);
+            });
+        }
+
+        document.getElementById("dictionary-button").addEventListener("click", function() {
+            document.getElementById("dictionary-container").classList.add("show");
+        });
+
+        document.getElementById("close-button").addEventListener("click", function() {
+            document.getElementById("dictionary-container").classList.remove("show");
+        });
+
+        fetchWords();
+    </script>
 </body>
 </html>

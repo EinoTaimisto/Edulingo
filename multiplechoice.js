@@ -1,14 +1,18 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     let questions = [];
-    const wrongAnswersList = [
-        "Rasvata", "Taluttaa", "Jakaa", "Kuivata", "Harjata", 
-        "Työntää", "Leikata", "Hikoilla", "Siirtää", "Peitellä", 
-        "Nousta", "Hakea", "Ruokailla", "Nostaa", "Pyyhkiä", 
-        "Kammata", "Valita", "Viedä", "Peseytyä", "Suihkuttaa", 
-        "Avustaa/Auttaa", "Syöttää", "Auttaa", "Vaihtaa lakanat"
-    ];
     let currentQuestionIndex = 0;
+
+    const wrongAnswersLists = {
+        default: [
+            "Rasvata", "Taluttaa", "Jakaa", "Kuivata", "Harjata",
+            "Työntää", "Leikata", "Hikoilla", "Siirtää", "Peitellä",
+            "Nousta", "Hakea", "Ruokailla", "Nostaa", "Pyyhkiä",
+            "Kammata", "Valita", "Viedä", "Peseytyä", "Suihkuttaa",
+            "Avustaa/Auttaa", "Syöttää", "Auttaa", "Vaihtaa lakanat"
+        ],
+        keho: ["Elimistö", "Sydän", "Keuhkot", "Maksa", "Munuaiset", "Aivot", "Vatsa", "Lihakset", "Luusto", "Suolisto"],
+        actions: ["Työskennellä", "Opiskella", "Leikkiä", "Rakentaa", "Maalata"]
+    };
 
     const image = document.getElementById('image');
     const optionsContainer = document.getElementById('options');
@@ -23,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Lataa kysymykset tietokannasta
+    const selectedWrongAnswersList = wrongAnswersLists[tableName] || wrongAnswersLists.default;
+
     async function loadQuestions() {
         try {
             const response = await fetch(`http://localhost/Edulingo/edulingo_api/questions.php?table=${tableName}`);
@@ -48,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
         optionsContainer.innerHTML = '';
     
-        const wrongAnswers = getRandomWrongAnswers(wrongAnswersList, currentQuestion.answer, 3);
+        const wrongAnswers = getRandomWrongAnswers(selectedWrongAnswersList, currentQuestion.answer, 3);
         const allOptions = shuffleArray([currentQuestion.answer, ...wrongAnswers]);
     
         allOptions.forEach(option => {
@@ -82,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     correctMessage.textContent = "Oikein! Olet vastannut kaikkiin kysymyksiin!";
                     correctMessage.classList.remove('hidden');
                 }
-            }, 1000); // Sekunnin odotus ennen seuraavaan kysymykseen siirtymistä
+            }, 1000);
         } else {
             wrongMessage.classList.remove('hidden');
         }
