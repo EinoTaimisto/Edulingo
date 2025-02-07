@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monivalintapeli</title>
+    <link rel="stylesheet" type="text/css" href="multichoice.css">
+    <link rel="stylesheet" type="text/css" href="dct.css">
+</head>
+<body>
+    <header>
+        <img src="localhost/Edulingo/edukoLogo.png" alt="Eduko Logo"/>
+        <nav>
+            <ul>
+                <li><a href="index.html">Pääsivulle</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="quiz-container">
+        <h1>Monivalintapeli</h1>
+        <img id="image" src="" alt="Kuva" />
+        <div id="options"></div>
+        <p id="correctMessage" class="hidden"></p>
+        <p id="wrongMessage" class="hidden">Väärin, yritä uudelleen!</p>
+    </div>
+
+    <button id="dictionary-button">Avaa Sanakirja</button>
+    <div id="dictionary-container">
+        <button id="close-button">&times;</button>
+        <h1>Sanakirja</h1>
+        <ul id="word-list"></ul>
+    </div>
+
+<script type="text/javascript" src="multiplechoice.js"></script>
+<script type="text/javascript" src="sanakirja.js"></script>
+    
+</body>
+</html>

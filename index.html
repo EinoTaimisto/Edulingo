@@ -3,31 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="index.css">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="dct.css">
     <title>Edulingo</title>
+
 </head>
 <body>
-    <div style="background-color:#AC9E6E; padding:15px; text-align:center;">
-        <h1>Tervetuloa Edulingoon!</h1>
-        <p>Valitse opiskeltava lista</p>
-    </div>
-            <div class="main mb-3">
-            <h2>Lorum Ipsum</h2>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-      </div>
-    <div class="container mt-4">
-        <div class="menu mb-3">
-            <h2>Menu</h2>
-            <a class="btn btn-primary d-block mb-3" style ="background-color:#AC9E6E;" href="http://localhost/Edulingo/placeholder.html" role="button">Kotihoito</a>
-            <a class="btn btn-primary d-block mb-3" style ="background-color:#AC9E6E;"href="http://localhost/Edulingo/kotihoito.html" role="button">Tuki ja Liikunta</a>
-            <a class="btn btn-primary d-block mb-3" style ="background-color:#AC9E6E;"href="http://localhost/Edulingo/kotihoito.html" role="button">Lääkehoito</a>
-            <a class="btn btn-primary d-block mb-3" style ="background-color:#AC9E6E;"href="http://localhost/Edulingo/kotihoito.html" role="button">Päivystys</a>
+    <header style="background-color:#AC9E6E; display: flex; align-items: center; padding: 10px;">
+        <div style="text-align: center; flex: 1;">
+            <h1>Tervetuloa Edulingoon!</h1>
+            <p>Valitse opiskeltava lista</p>
+        </div>
+    </header>
+    <br>
+    <div class="main">
+        <div class="button-container">
+            <div class="content">
+                <a href="http://localhost/Edulingo/selection.html" class="project-container" style="display: block;">
+                    <div>
+                        <p>Kuvan tunnistus</p>
+                    </div>
+                </a>
+                <a href="selectionMulti.html" class="project-container" style="display: block;">
+                    <div>
+                        <p>Monivalintapeli</p>
+                </div>
+                </a>
+                <a href="dd.html" class="project-container" style="display: block;">
+                    <div>
+                        <p>Scramble Testi</p>
+                    </div>
+                </a>
+                <a href="" class="project-container" style="display: block;">
+                    <div>
+                        <p>Toistaiseksi Tyhjä</p>
+                    </div>
+                </a>
+                <a href="" class="project-container" style="display: block;">
+                    <div>
+                        <p>Toistaiseksi Tyhjä</p>
+                    </div>
+                </a>
+                <a href="" class="project-container" style="display: block;">
+                    <div>
+                        <p>Toistaiseksi Tyhjä</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
-    <footer class="blockquote-footer text-center mt-4">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+    <button id="dictionary-button">Avaa Sanakirja</button>
+    <div id="dictionary-container">
+        <button id="close-button">&times;</button>
+        <h1>Sanakirja</h1>
+        <ul id="word-list"></ul>
+    </div>
+
+    <script>
+        async function fetchWords() {
+            try {
+                const response = await fetch('http://localhost/Edulingo/edulingo_api/get_words.php');
+                const words = await response.json();
+                displayWords(words);
+            } catch (error) {
+                console.error('Error fetching words:', error);
+            }
+        }
+
+        function displayWords(words) {
+            const wordList = document.getElementById("word-list");
+            wordList.innerHTML = "";
+            words.sort().forEach(word => {
+                const li = document.createElement("li");
+                li.textContent = word;
+                wordList.appendChild(li);
+            });
+        }
+
+        document.getElementById("dictionary-button").addEventListener("click", function() {
+            document.getElementById("dictionary-container").classList.add("show");
+        });
+
+        document.getElementById("close-button").addEventListener("click", function() {
+            document.getElementById("dictionary-container").classList.remove("show");
+        });
+
+        fetchWords();
+    </script>
 </body>
 </html>

@@ -1,0 +1,144 @@
+
+header {
+    width: 100%;
+    background-color: #AC9E6E;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header img {
+    max-width: 500px;
+    height: auto;
+}
+
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f9;
+}
+
+#quiz-container {
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+#image {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#message {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.correct {
+    color: green;
+}
+
+.wrong {
+    color: red;
+}
+
+.option {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #AC9E6E;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.option:hover {
+    background-color: #AC9E6E;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+footer {
+    width: 100%;
+    background-color: #AC9E6E;
+    padding: 15px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+}
+
+footer p {
+    color: white;
+    margin: 0;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+#game-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  .letter-box {
+    display: inline-block;
+    padding: 10px;
+    font-size: 20px;
+    margin: 5px;
+    background: #AC9E6E;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  #word-container {
+    margin: 20px 0;
+    font-size: 24px;
+    font-weight: bold;
+  }
