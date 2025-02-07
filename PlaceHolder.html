@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perussanasto</title>
     <link rel="stylesheet" type="text/css" href="pc.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="dct.css">
 </head>
 <body>
     <header>
@@ -17,32 +16,36 @@
             </ul>
         </nav>
     </header>
-    <div class="container inquiry-container">
-        <h1 class="text-center mb-4">Mikä tämä on?</h1>
-        <div class="text-center">
-            <img src="" class="img-fluid mb-4" id="image">
+
+    <div class="container">
+        <h1 class="title">Mikä tämä on? 
+            <button id="playAudioButton" style="display: none;">🔊</button>
+            <audio id="audioPlayer"></audio></h1>
+        <div class="image-container">
+            <img src="" class="question-image" id="image">
         </div>
+
         <form id="inquiryForm">
-            <div class="mb-3">
-                <label for="userAnswer" class="form-label">Vastauksesi</label>
-                <input type="text" autocomplete="off" class="form-control" id="userAnswer" placeholder="Kirjoita vastauksesi tähän">
-            </div>
-            <div class="mb-3 text-center">
-                <button type="submit" class="btn btn-primary" style ="background-color:#AC9E6E;">Lähetä</button>
-            </div>
+            <label for="userAnswer">Vastauksesi</label>
+            <input type="text" autocomplete="off" class="input-field" id="userAnswer" placeholder="Kirjoita vastauksesi tähän">
+            <button type="submit" class="submit-button">Lähetä</button>
         </form>
-        <div class="alert alert-success result-message" id="correctMessage">
-            Oikein!
-        </div>
-        <div class="alert alert-danger result-message" id="wrongMessage">
-            Valitettavasti väärin. Yritä uudelleen!
-        </div>
-        <div class="text-center">
-            <button id="continueButton" class="btn btn-secondary" style ="background-color:#AC9E6E;">Jatka</button>
-        </div>
+
+        <div class="message correct-message" id="correctMessage">Oikein!</div>
+        <div class="message wrong-message" id="wrongMessage">Valitettavasti väärin. Yritä uudelleen!</div>
+
+        <button id="continueButton" class="continue-button">Jatka</button>
     </div>
+
+    <button id="dictionary-button" class="dict-button">Avaa Sanakirja</button>
+    <div id="dictionary-container" class="dict-container">
+        <button id="close-button" class="close-button">&times;</button>
+        <h1>Sanakirja</h1>
+        <ul id="word-list"></ul>
+    </div>
+
     <script type="text/javascript" src="getQS.js"></script>
-    </body>
-    
+    <script type="text/javascript" src="sanakirja.js"></script>
+
 </body>
 </html>

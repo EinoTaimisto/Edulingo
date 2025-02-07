@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const wrongMessage = document.getElementById('wrongMessage');
     const inquiryForm = document.getElementById('inquiryForm');
     const continueButton = document.getElementById('continueButton');
-
+    const audioButton = document.getElementById('playAudioButton'); 
+    const audioElement = document.getElementById('audioPlayer'); 
 
     const urlParams = new URLSearchParams(window.location.search);
     const tableName = urlParams.get('table');
@@ -30,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('No questions available.');
             }
         } catch (error) {
-            console.log(error);
             console.error('Error fetching questions:', error);
             alert('Failed to load questions. Please try again later.');
         }
@@ -43,7 +43,20 @@ document.addEventListener('DOMContentLoaded', () => {
         correctMessage.style.display = "none";
         wrongMessage.style.display = "none";
         continueButton.style.display = "none";
+
+       //audio asetukset. Audio soi vasta kun nappula painettu
+        if (currentQuestion.audio) {
+            audioElement.src = currentQuestion.audio;
+            audioButton.style.display = "block"; 
+        } else {
+            audioButton.style.display = "none"; 
+        }
     }
+    audioButton.addEventListener('click', function () {
+        if (audioElement.src) {
+            audioElement.play();
+        }
+    });
 
     inquiryForm.addEventListener('submit', function (event) {
         event.preventDefault();

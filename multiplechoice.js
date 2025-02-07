@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "Avustaa/Auttaa", "Syöttää", "Auttaa", "Vaihtaa lakanat"
         ],
         keho: ["Elimistö", "Sydän", "Keuhkot", "Maksa", "Munuaiset", "Aivot", "Vatsa", "Lihakset", "Luusto", "Suolisto"],
-        actions: ["Työskennellä", "Opiskella", "Leikkiä", "Rakentaa", "Maalata"]
     };
 
     const image = document.getElementById('image');

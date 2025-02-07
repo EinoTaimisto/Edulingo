@@ -4,64 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="dct.css">
     <title>Edulingo</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f9;
-        }
-        #dictionary-button {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            background-color: #1c78da00;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        #dictionary-container {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 300px;
-            height: 100vh;
-            background: white;
-            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            overflow-y: auto;
-            transition: right 0.3s ease-in-out;
-            display: none;
-        }
-        #dictionary-container.show {
-            right: 0;
-            display: block;
-        }
-        #close-button {
-            position: absolute; 
-            top: 10px;
-            right: 10px;
-            background: #AC9E6E;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 50%;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin-top: 30px;
-        }
-        li {
-            padding: 8px;
-            border-bottom: 1px solid #ddd;
-        }
-    </style>
+
 </head>
 <body>
     <header style="background-color:#AC9E6E; display: flex; align-items: center; padding: 10px;">

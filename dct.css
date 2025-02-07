@@ -1,3 +1,20 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f9;
+}
+#dictionary-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #1c78da00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
 #dictionary-container {
     position: fixed;
     top: 0;
@@ -15,18 +32,24 @@
     right: 0;
     display: block;
 }
-.hidden {
-    display: none;
-}
-#dictionary-button {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
+#close-button {
+    position: absolute; 
+    top: 10px;
+    right: 10px;
+    background: #AC9E6E;
     color: white;
     border: none;
-    border-radius: 5px;
+    padding: 5px 10px;
     cursor: pointer;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    border-radius: 50%;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 30px;
+}
+li {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
 }

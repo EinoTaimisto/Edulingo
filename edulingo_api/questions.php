@@ -21,13 +21,13 @@ if (!$tableName) {
 }
 
 
-$validTables = ["verbeja", "questions", "hoitotyö", "keho"];
+$validTables = ["verbeja", "questions", "elamanvaiheet", "keho"];
 if (!in_array($tableName, $validTables)) {
     echo json_encode(["error" => "Invalid table name"]);
     exit;
 }
 
-$sql = "SELECT image, nimi, explanation, answer FROM $tableName";
+$sql = "SELECT image, nimi, explanation, answer, audio FROM $tableName";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
