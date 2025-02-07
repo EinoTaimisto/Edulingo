@@ -13,6 +13,7 @@ if ($conn->connect_error) {
     die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));
 }
 
+
 //Etsii oikean taulun
 $tableName = $_GET['table'] ?? null;
 if (!$tableName) {
@@ -28,6 +29,7 @@ if (!in_array($tableName, $validTables)) {
 }
 
 $sql = "SELECT image, nimi, explanation, answer, audio FROM $tableName";
+
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
