@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanan muodostus</title>
+    <link rel="stylesheet" type="text/css" href="multichoice.css">
+    <link rel="stylesheet" type="text/css" href="dct.css">
+</head>
+<body>
+    <header>
+        <img src="localhost/Edulingo/edukoLogo.png" alt="Eduko Logo"/>
+        <nav>
+            <ul>
+                <li><a href="index.html">Pääsivulle</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div id="game-container">
+        <h1>Muodosta oikea sana äänen perusteella</h1>
+        <button id="playAudioButton" style="display: none;">🔊</button>
+        <audio id="audioPlayer"></audio></h1>
+        <div id="word-container"></div>
+        <div id="letters"></div>
+        <p id="message"></p>
+        <button id="undo-button" style="display: none;">Undo Last Letter</button>
+        <button id="reset-button">Uusi sana</button>
+    </div>
+
+    <button id="dictionary-button">Avaa Sanakirja</button>
+    <div id="dictionary-container">
+        <button id="close-button">&times;</button>
+        <h1>Sanakirja</h1>
+        <ul id="word-list"></ul>
+    </div>
+
+    <script type="text/javascript" src="sanakirja.js"></script>
+    <script type="text/javascript" src="scramble.js"></script>
+
+</body>
+</html>

@@ -1,6 +1,5 @@
 <?php
 header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: *");
 
 $servername = "localhost";
 $username = "root";
@@ -13,24 +12,34 @@ if ($conn->connect_error) {
     die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));
 }
 
-$tables = ["keho", "verbeja", "elamanvaiheet"];
-$words = [];
 
-foreach ($tables as $table) {
-    $sql = "SELECT nimi FROM $table"; 
-    $result = $conn->query($sql);
+$tablesQuery = "SHOW TABLES";
+$tablesResult = $conn->query($tablesQuery);
 
-    if ($result) {
-        while ($row = $result->fetch_assoc()) {
-            $words[] = $row["nimi"];
+$wordsByTable = [];
+
+if ($tablesResult->num_rows > 0) {
+    while ($tableRow = $tablesResult->fetch_array()) {
+        $tableName = $tableRow[0];
+
+        $safeTableName = preg_replace('/[^a-zA-Z0-9_]/', '', $tableName);
+
+        // Get words from the current table
+        $sql = "SELECT nimi FROM `$safeTableName`";
+        $result = $conn->query($sql);
+
+        $words = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $words[] = $row['nimi'];
+            }
+        }
+        if (!empty($words)) {
+            $wordsByTable[$safeTableName] = $words;
         }
     }
 }
 
-$words = array_unique($words); 
-sort($words);
-
-echo json_encode(array_values($words));
-
+echo json_encode($wordsByTable);
 $conn->close();
 ?>
