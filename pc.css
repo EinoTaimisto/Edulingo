@@ -107,6 +107,24 @@ form {
   background-color: #8c7b52;
 }
 
+.audio-button {
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  background-color: #AC9E6E;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin: 10px auto;
+  display: block;
+  text-align: center;
+}
+
+.audio-button:hover {
+  background-color: #8F855B;
+}
+
+
 /* Messages */
 .message {
   display: none;
@@ -214,3 +232,4 @@ footer {
 .project-container a:hover {
   color: #1abc9c;
 }
+
