@@ -54,12 +54,11 @@ function selectLetter(letter, element, index) {
 
 function undoLastSelection() {
     if (selectedLetters.length > 0) {
-        const lastSelection = selectedLetters.pop(); // Get the last selection
-        currentInput = currentInput.slice(0, -1); // Remove the last letter
+        const lastSelection = selectedLetters.pop(); 
+        currentInput = currentInput.slice(0, -1); 
         document.getElementById("word-container").textContent = currentInput;
         lastSelection.element.style.visibility = "visible"; 
     }
-
 
     if (selectedLetters.length === 0) {
         undoButton.style.display = "none";
@@ -69,11 +68,19 @@ function undoLastSelection() {
 function checkAnswer() {
     if (currentInput === correctWord) {
         document.getElementById("message").textContent = "Oikein!";
+        undoButton.style.display = "none"; 
+    } else if (currentInput.length === correctWord.length) {
+        let sortedInput = currentInput.split("").sort().join("");
+        let sortedCorrect = correctWord.split("").sort().join("");
+
+        if (sortedInput === sortedCorrect) {
+            document.getElementById("message").textContent = "Väärin!";
+        }
     }
 }
 
 async function startGame() {
-    const table = "verbeja"; //Tee niin, että valitsee valitun aihealueen
+    const table = "verbeja";//Muuta niin, että kaikki pöydät käytettävissä!!
     const wordData = await fetchRandomWord(table);
 
     console.log("Fetched word data:", wordData);

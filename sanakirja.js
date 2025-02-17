@@ -12,26 +12,30 @@ document.addEventListener("DOMContentLoaded", function () {
     function displayWords(wordsByTable) {
         const wordList = document.getElementById("word-list");
         wordList.innerHTML = "";
-
+    
         Object.keys(wordsByTable).forEach(tableName => {
-            // Create a heading for each table
+            // Muotoillaan taulun nimi
+            let formattedTableName = tableName
+                .replace(/_/g, " ") // Korvataan alaviivat väleillä
+                .replace(/\b\w/g, char => char.toUpperCase()); 
+    
             const tableHeader = document.createElement("h3");
-            tableHeader.textContent = tableName;
+            tableHeader.textContent = formattedTableName;
             wordList.appendChild(tableHeader);
+    
 
-            // Create a list for words in this table
             const ul = document.createElement("ul");
-
+    
             wordsByTable[tableName].sort().forEach(word => {
                 const li = document.createElement("li");
                 li.textContent = word;
                 ul.appendChild(li);
             });
-
+    
             wordList.appendChild(ul);
         });
     }
-
+    
     document.getElementById("dictionary-button").addEventListener("click", function () {
         fetchWords();
         document.getElementById("dictionary-container").classList.add("show");
