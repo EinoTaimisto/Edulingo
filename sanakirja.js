@@ -14,27 +14,38 @@ document.addEventListener("DOMContentLoaded", function () {
         wordList.innerHTML = "";
     
         Object.keys(wordsByTable).forEach(tableName => {
-            // Muotoillaan taulun nimi
             let formattedTableName = tableName
-                .replace(/_/g, " ") // Korvataan alaviivat väleillä
-                .replace(/\b\w/g, char => char.toUpperCase()); 
+                .replace(/_/g, " ")
+                .replace(/\b\w/g, char => char.toUpperCase());
     
             const tableHeader = document.createElement("h3");
             tableHeader.textContent = formattedTableName;
             wordList.appendChild(tableHeader);
     
-
             const ul = document.createElement("ul");
     
-            wordsByTable[tableName].sort().forEach(word => {
+            wordsByTable[tableName].forEach(entry => {
                 const li = document.createElement("li");
-                li.textContent = word;
+                li.textContent = entry.word; // Käytetään vain sanan tekstiä
+                li.style.cursor = "pointer"; 
+    
+                li.addEventListener("click", function () {
+                    if (entry.audio) {
+                        const audioElement = new Audio(entry.audio);
+                        audioElement.play();
+                    } else {
+                        console.warn("Ei äänitiedostoa saatavilla tälle sanalle:", entry.word);
+                    }
+                });
+    
                 ul.appendChild(li);
             });
     
             wordList.appendChild(ul);
         });
     }
+    
+    
     
     document.getElementById("dictionary-button").addEventListener("click", function () {
         fetchWords();
