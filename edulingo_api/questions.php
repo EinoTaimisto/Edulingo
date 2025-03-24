@@ -21,7 +21,7 @@ if (!$tableName) {
 }
 
 
-$validTables = ["verbeja", "questions", "elamanvaiheet", "keho"];
+$validTables = ["verbeja", "apuvalineet", "keho"];
 if (!in_array($tableName, $validTables)) {
     echo json_encode(["error" => "Invalid table name"]);
     exit;
