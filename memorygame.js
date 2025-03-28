@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (matchedCards.length === document.querySelectorAll(".card").length) {
             gameWon = true;
             setTimeout(() => {
-                alert("🎉 You won!");
+                alert("Sait kaikki parit kasattua!");
                 returnToSelection();
             }, 500);
         }

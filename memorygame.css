@@ -11,18 +11,20 @@ body {
 
 header {
     width: 100%;
-    background-color: #AC9E6E;
+    background: rgb(244,242,237);
+    background: linear-gradient(0deg, rgba(244,242,237,1) 0%, rgba(210,201,171,1) 15%, rgba(209,200,169,1) 36%, rgba(172,158,110,1) 100%);
     padding: 20px 0;
     text-align: center;
-}
+    
+  }
 
 header img {
-    max-width: 150px;
+    max-width: 500px;
     height: auto;
 }
 
 header nav ul {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
     margin: 10px 0;
 }
@@ -36,12 +38,10 @@ header nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 18px;
-    transition: color 0.3s ease-in-out;
 }
 
 header nav ul li a:hover {
     text-decoration: underline;
-    color: #ffeeba;
 }
 
 #theme-selection {

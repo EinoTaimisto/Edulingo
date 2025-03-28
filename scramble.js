@@ -1,16 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-
     let selectedTable = "";
     const gameContainer = document.getElementById("game-container");
     const audioElement = document.getElementById("audioPlayer");
     const audioButton = document.getElementById("playAudioButton");
-     
     const undoButton = document.getElementById("undo-button");
 
     gameContainer.style.display = "none";
 
     const tableSelectionContainer = document.createElement("div");
-    tableSelectionContainer.id = "table-selection-container";
+    tableSelectionContainer.id = ".selection-container";
     tableSelectionContainer.innerHTML = "<h1>Valitse opittava aihe</h1>";
     document.body.insertBefore(tableSelectionContainer, gameContainer);
 
@@ -18,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     tables.forEach(table => {
         const button = document.createElement("button");
+        button.classList.add('selection-button');
         button.textContent = table.charAt(0).toUpperCase() + table.slice(1);
         button.onclick = () => {
             selectedTable = table;
@@ -114,7 +113,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         displayLetters();
     }
-
+    undoButton.addEventListener("click", () => {
+        if (selectedLetters.length > 0) {
+            let lastSelected = selectedLetters.pop();
+            currentInput = currentInput.slice(0, -1);
+            document.getElementById("word-container").textContent = currentInput;
+            lastSelected.element.style.visibility = "visible";
+    
+            if (selectedLetters.length === 0) {
+                undoButton.style.display = "none";
+            }
+        }
+    });
+    
 
     audioButton.addEventListener("click", () => {
         if (audioElement.src) {
@@ -122,6 +133,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     document.getElementById("reset-button").addEventListener("click", () => {
-        startGame(selectedTable); // Make sure 'selectedTable' stores the last used category
+        startGame(selectedTable);
     });
 });

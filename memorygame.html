@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Game</title>
-    <link rel="stylesheet" href="memorygame.css">
+    <title>Muistipeli</title>
+    <link rel="stylesheet" href="memorygame.css">    
+    <link rel="stylesheet" href="dct.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
 
     <header>
-        <img src="logo.png" alt="Edukon logo"> 
+        <img src="edukoLogo.png" alt="Edukon logo"> 
         <nav>
             <ul>
                 <li><a href="index.html">Etusivu</a></li>
@@ -36,7 +37,16 @@
         </div>
     </div>
 
+
+    <button id="dictionary-button">Avaa Sanakirja</button>
+    <div id="dictionary-container">
+        <button id="close-button">&times;</button>
+        <h1>Sanakirja</h1>
+        <ul id="word-list"></ul>
+    </div>
+
     <script src="memorygame.js"></script>
+    <script src="sanakirja.js"></script>
 
 </body>
 </html>

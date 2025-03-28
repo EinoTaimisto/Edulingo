@@ -117,26 +117,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Add styling for the selection buttons
-    const style = document.createElement('style');
-    style.innerHTML = `
-        .selection-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .selection-button {
-            background-color: #AC9E6E;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: 0.3s ease-in-out;
-            margin: 5px;
-        }
-        .selection-button:hover {
-            background-color: #8c7b52;
-        }
-    `;
-    document.head.appendChild(style);
+
 });
