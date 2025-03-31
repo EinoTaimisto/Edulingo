@@ -12,10 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let gameWon = false;
     let currentTheme = "";
 
+    // Event Listeners for Theme Selection
     document.getElementById("verbejä-btn").addEventListener("click", () => startGame("verbeja"));
-    document.getElementById("hoitotyö-btn").addEventListener("click", () => startGame("hoitotyö"));
+    document.getElementById("apuvälineet-btn").addEventListener("click", () => startGame("apuvalineet"));
     document.getElementById("keho-btn").addEventListener("click", () => startGame("keho"));
-    
+
     restartBtn.addEventListener("click", restartGame);
     backBtn.addEventListener("click", returnToSelection);
 
@@ -32,11 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function fetchImages() {
         try {
-            const response = await fetch(`http://localhost/Edulingo/edulingo_api/memorygame.php?theme=${currentTheme}`);
+            const response = await fetch(`http://localhost/Edulingo/edulingo_api/memorygame.php?theme=${encodeURIComponent(currentTheme)}`);
             const data = await response.json();
 
-            if (!data || data.length === 0) {
-                console.error("No images found in the database.");
+            if (!data || data.error) { 
+                console.error("Error:", data.error || "No images found.");
+                alert(`Error: ${data.error || "No images found in the database."}`);
                 return [];
             }
 
@@ -47,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }));
         } catch (error) {
             console.error("Fetch error:", error);
+            alert("Failed to load images. Please try again.");
             return [];
         }
     }
