@@ -1,94 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="fi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="dct.css">
     <title>Edulingo</title>
-
 </head>
 <body>
-    <header style="background-color:#AC9E6E; display: flex; align-items: center; padding: 10px;">
-        <div style="text-align: center; flex: 1;">
-            <h1>Tervetuloa Edulingoon!</h1>
-            <p>Valitse opiskeltava lista</p>
-        </div>
+    <header>
+        <h1>Tervetuloa Edulingoon!</h1>
     </header>
-    <br>
-    <div class="main">
+    <main class="main">
         <div class="button-container">
-            <div class="content">
-                <a href="http://localhost/Edulingo/selection.html" class="project-container" style="display: block;">
-                    <div>
-                        <p>Kuvan tunnistus</p>
-                    </div>
-                </a>
-                <a href="selectionMulti.html" class="project-container" style="display: block;">
-                    <div>
-                        <p>Monivalintapeli</p>
-                </div>
-                </a>
-                <a href="dd.html" class="project-container" style="display: block;">
-                    <div>
-                        <p>Scramble Testi</p>
-                    </div>
-                </a>
-                <a href="" class="project-container" style="display: block;">
-                    <div>
-                        <p>Toistaiseksi Tyhjä</p>
-                    </div>
-                </a>
-                <a href="" class="project-container" style="display: block;">
-                    <div>
-                        <p>Toistaiseksi Tyhjä</p>
-                    </div>
-                </a>
-                <a href="" class="project-container" style="display: block;">
-                    <div>
-                        <p>Toistaiseksi Tyhjä</p>
-                    </div>
-                </a>
-            </div>
+            <a href="kuvatunnistus.html" class="project-container">
+                <p>Kuvan tunnistus</p>
+            </a>
+            <a href="test.html" class="project-container">
+                <p>Monivalintapeli</p>
+            </a>
+            <a href="scramble.html" class="project-container">
+                <p>Scramble Testi</p>
+            </a>
+            <a href="memorygame.html" class="project-container">
+                <p>Muistipeli</p>
+            </a>
         </div>
-    </div>
+    </main>
     <button id="dictionary-button">Avaa Sanakirja</button>
     <div id="dictionary-container">
         <button id="close-button">&times;</button>
         <h1>Sanakirja</h1>
         <ul id="word-list"></ul>
     </div>
-
-    <script>
-        async function fetchWords() {
-            try {
-                const response = await fetch('http://localhost/Edulingo/edulingo_api/get_words.php');
-                const words = await response.json();
-                displayWords(words);
-            } catch (error) {
-                console.error('Error fetching words:', error);
-            }
-        }
-
-        function displayWords(words) {
-            const wordList = document.getElementById("word-list");
-            wordList.innerHTML = "";
-            words.sort().forEach(word => {
-                const li = document.createElement("li");
-                li.textContent = word;
-                wordList.appendChild(li);
-            });
-        }
-
-        document.getElementById("dictionary-button").addEventListener("click", function() {
-            document.getElementById("dictionary-container").classList.add("show");
-        });
-
-        document.getElementById("close-button").addEventListener("click", function() {
-            document.getElementById("dictionary-container").classList.remove("show");
-        });
-
-        fetchWords();
-    </script>
+    <script src="sanakirja.js"></script>
+    <script src="index_animations.js"></script>
 </body>
 </html>

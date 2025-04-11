@@ -3,28 +3,38 @@ document.addEventListener('DOMContentLoaded', () => {
     let questions = [];
     let currentQuestionIndex = 0;
 
-    const Image = document.getElementById('image');
-    const userAnswerInput = document.getElementById('userAnswer');
-    const correctMessage = document.getElementById('correctMessage');
-    const wrongMessage = document.getElementById('wrongMessage');
-    const inquiryForm = document.getElementById('inquiryForm');
-    const continueButton = document.getElementById('continueButton');
-    const audioButton = document.getElementById('playAudioButton'); 
-    const audioElement = document.getElementById('audioPlayer'); 
+    const header = document.querySelector('header');
+    const container = document.querySelector('.container');
+    const selectionContainer = document.createElement('div');
+    selectionContainer.classList.add('selection-container');
+    selectionContainer.innerHTML = `<h2>Valitse aihe</h2>`;
+    
+    const tableNames = ['Keho', 'Apuvalineet', 'Verbeja'];
+    tableNames.forEach(table => {
+        const button = document.createElement('button');
+        button.textContent = table;
+        button.classList.add('selection-button');
+        button.addEventListener('click', () => startGame(table.toLowerCase()));
+        selectionContainer.appendChild(button);
+    });
+    
+    header.insertAdjacentElement('afterend', selectionContainer);
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const tableName = urlParams.get('table');
-    if (!tableName) {
-        alert("Table name is missing in the URL.");
-        return;
+    function startGame(selectedTable) {
+        selectionContainer.style.display = 'none';
+        container.style.display = 'block';
+        loadQuestions(selectedTable);
     }
 
-    async function loadQuestions() {
+    async function loadQuestions(tableName) {
         console.log("lataa");
         try {
             const response = await fetch(`http://localhost/Edulingo/edulingo_api/questions.php?table=${tableName}`);
             questions = await response.json();
+            
             if (questions.length > 0) {
+                questions = shuffleArray(questions);
+                currentQuestionIndex = 0;
                 loadQuestion();
                 console.log("ladattu");
             } else {
@@ -38,56 +48,74 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadQuestion() {
         const currentQuestion = questions[currentQuestionIndex];
-        Image.src = currentQuestion.image;
-        userAnswerInput.value = "";
-        correctMessage.style.display = "none";
-        wrongMessage.style.display = "none";
-        continueButton.style.display = "none";
+        document.getElementById('image').src = currentQuestion.image;
+        document.getElementById('userAnswer').value = "";
+        document.getElementById('correctMessage').style.display = "none";
+        document.getElementById('wrongMessage').style.display = "none";
+        document.getElementById('continueButton').style.display = "none";
 
-       //audio asetukset. Audio soi vasta kun nappula painettu
         if (currentQuestion.audio) {
-            audioElement.src = currentQuestion.audio;
-            audioButton.style.display = "block"; 
+            document.getElementById('audioPlayer').src = currentQuestion.audio;
+            document.getElementById('playAudioButton').style.display = "block";
         } else {
-            audioButton.style.display = "none"; 
+            document.getElementById('playAudioButton').style.display = "none";
         }
     }
-    audioButton.addEventListener('click', function () {
+
+    document.getElementById('playAudioButton').addEventListener('click', function () {
+        const audioElement = document.getElementById('audioPlayer');
         if (audioElement.src) {
             audioElement.play();
         }
     });
 
-    inquiryForm.addEventListener('submit', function (event) {
+    document.getElementById('inquiryForm').addEventListener('submit', function (event) {
         event.preventDefault();
         
-        const currentQuestion = questions[currentQuestionIndex]; 
-        const userAnswer = userAnswerInput.value.trim().toLowerCase();
+        const currentQuestion = questions[currentQuestionIndex];
+        const userAnswer = document.getElementById('userAnswer').value.trim().toLowerCase();
         const correctAnswer = currentQuestion.answer.trim().toLowerCase();
 
-        correctMessage.style.display = "none";
-        wrongMessage.style.display = "none";
+        document.getElementById('correctMessage').style.display = "none";
+        document.getElementById('wrongMessage').style.display = "none";
     
         if (userAnswer === correctAnswer) {
-            correctMessage.innerHTML = `Oikein! ${currentQuestion.explanation}`;
-            correctMessage.style.display = "block";
-            continueButton.style.display = "block";
+            document.getElementById('correctMessage').innerHTML = `Oikein! ${currentQuestion.explanation}`;
+            document.getElementById('correctMessage').style.display = "block";
+            document.getElementById('continueButton').style.display = "block";
         } else {
-            wrongMessage.style.display = "block";
-            userAnswerInput.value = "";
+            document.getElementById('wrongMessage').style.display = "block";
+            document.getElementById('userAnswer').value = "";
         }
     });
 
-    continueButton.addEventListener('click', function () {
+    document.getElementById('continueButton').addEventListener('click', function () {
         currentQuestionIndex++;
         if (currentQuestionIndex < questions.length) {
             loadQuestion();
         } else {
-            correctMessage.innerHTML = "Oikein! Olet vastannut kaikkiin kysymyksiin!";
-            correctMessage.style.display = "block";
-            continueButton.style.display = "none";
+            document.getElementById('correctMessage').innerHTML = "Oikein! Olet vastannut kaikkiin kysymyksiin!";
+            document.getElementById('correctMessage').style.display = "block";
+            document.getElementById('continueButton').textContent = "Takaisin alkuun";
+            document.getElementById('continueButton').addEventListener('click', resetGame);
         }
     });
 
-    loadQuestions();
+    function resetGame() {
+        selectionContainer.style.display = 'block';
+        container.style.display = 'none';
+        document.getElementById('continueButton').textContent = "Jatka";
+        document.getElementById('continueButton').removeEventListener('click', resetGame);
+    }
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    // Add styling for the selection buttons
+
 });

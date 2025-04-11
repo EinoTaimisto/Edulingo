@@ -1,11 +1,11 @@
 <?php
-header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: *");
+header('Content-Type: application/json');
 
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "edulingo_db";
+
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -13,13 +13,12 @@ if ($conn->connect_error) {
     die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));
 }
 
-//Etsii oikean taulun
+
 $tableName = $_GET['table'] ?? null;
 if (!$tableName) {
     echo json_encode(["error" => "Table name is required"]);
     exit;
 }
-
 
 $validTables = ["verbeja", "apuvalineet", "keho"];
 if (!in_array($tableName, $validTables)) {
@@ -27,18 +26,16 @@ if (!in_array($tableName, $validTables)) {
     exit;
 }
 
-$sql = "SELECT image, nimi, explanation, answer, audio FROM $tableName";
+
+$sql = "SELECT image, nimi, explanation, answer, audio FROM $tableName ORDER BY RAND() LIMIT 1";
 $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    $questions = [];
-    while ($row = $result->fetch_assoc()) {
-        $questions[] = $row;
-    }
-    echo json_encode($questions);
+if ($result && $row = $result->fetch_assoc()) {
+    echo json_encode($row); 
 } else {
-    echo json_encode([]);
+    echo json_encode(["error" => "No words found"]);
 }
+
 
 $conn->close();
 ?>

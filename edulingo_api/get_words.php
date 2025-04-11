@@ -1,6 +1,5 @@
 <?php
 header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: *");
 
 $servername = "localhost";
 $username = "root";
@@ -13,24 +12,35 @@ if ($conn->connect_error) {
     die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));
 }
 
-$tables = ["keho", "verbeja", "elamanvaiheet"];
-$words = [];
+$tablesQuery = "SHOW TABLES";
+$tablesResult = $conn->query($tablesQuery);
 
-foreach ($tables as $table) {
-    $sql = "SELECT nimi FROM $table"; 
-    $result = $conn->query($sql);
+$wordsByTable = [];
 
-    if ($result) {
-        while ($row = $result->fetch_assoc()) {
-            $words[] = $row["nimi"];
+if ($tablesResult->num_rows > 0) {
+    while ($tableRow = $tablesResult->fetch_array()) {
+        $tableName = $tableRow[0];
+
+        $safeTableName = preg_replace('/[^a-zA-Z0-9_]/', '', $tableName);
+
+        $sql = "SELECT nimi, audio FROM `$safeTableName`";
+        $result = $conn->query($sql);
+
+        $words = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $words[] = [
+                    "word" => $row['nimi'],
+                    "audio" => $row['audio']
+                ];
+            }
+        }
+        if (!empty($words)) {
+            $wordsByTable[$safeTableName] = $words;
         }
     }
 }
-
-$words = array_unique($words); 
-sort($words);
-
-echo json_encode(array_values($words));
-
+echo json_encode($wordsByTable);
 $conn->close();
+
 ?>

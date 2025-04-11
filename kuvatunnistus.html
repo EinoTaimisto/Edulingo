@@ -9,24 +9,25 @@
 </head>
 <body>
     <header>
-        <img src="localhost/Edulingo/edukoLogo.png" alt="Eduko Logo"/>
+        <img src="edukoLogo.png" alt="Eduko Logo"/>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html">Etusivu</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="container">
         <h1 class="title">Mikä tämä on? 
-            <button id="playAudioButton" style="display: none;">🔊</button>
-            <audio id="audioPlayer"></audio></h1>
+            <button id="playAudioButton">
+                🔊 Kuuntele
+            </button>
+            <audio id="audioPlayer"></audio>
+        </h1>
         <div class="image-container">
             <img src="" class="question-image" id="image">
         </div>
-
         <form id="inquiryForm">
-            <label for="userAnswer">Vastauksesi</label>
             <input type="text" autocomplete="off" class="input-field" id="userAnswer" placeholder="Kirjoita vastauksesi tähän">
             <button type="submit" class="submit-button">Lähetä</button>
         </form>
