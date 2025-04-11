@@ -13,15 +13,24 @@ document.addEventListener('DOMContentLoaded', () => {
     selectionContainer.classList.add('selection-container');
     selectionContainer.innerHTML = `<h2>Valitse aihe</h2>`;
 
-    const tableNames = ['Keho', 'Apuvalineet', 'Verbeja'];
+    const tableNames = ['Keho', 'Apuvälineet', 'Verbejä'];
 
     tableNames.forEach(table => {
         const button = document.createElement('button');
         button.textContent = table;
+    
         button.classList.add('selection-button');
-        button.addEventListener('click', () => startGame(table.toLowerCase()));
+    
+     
+        const formattedTable = table.toLowerCase()
+            .replace(/ä/g, 'a')
+            .replace(/ö/g, 'o');
+    
+        button.addEventListener('click', () => startGame(formattedTable));
+    
         selectionContainer.appendChild(button);
     });
+    
 
     document.body.insertBefore(selectionContainer, quizContainer);
     quizContainer.style.display = 'none';
